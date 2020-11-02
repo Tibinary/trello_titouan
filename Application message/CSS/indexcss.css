@@ -1,0 +1,38 @@
+.container{
+    padding: 0 !important;
+}
+
+.cardBorder{
+    border: solid 1px #000000!important;
+}
+
+.cardSpace{
+    max-height: 500px;
+    overflow: auto;
+}
+
+.background{
+    color: white;
+}
+
+.dashboard{
+    min-height: 84%;
+}
+
+.colone{
+    height: auto;
+}
+
+h2{
+    color: white;
+}
+
+.footer{
+    color : white;
+    text-align: center;
+}
+
+::-webkit-scrollbar{
+    width: 0px;
+    background: transparent;
+}
