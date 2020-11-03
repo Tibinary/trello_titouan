@@ -9,8 +9,10 @@ function addCard (lieuCardNumber,inputTextNumber) {
         content : document.getElementById(inputTextNumber).value,
         date : Date.now()
     };
+    let divdeplus = document.createElement("div");
+    divdeplus.className = "portlet";
     let card = document.createElement("div");
-    card.className = "text-center rounded cardCss";
+    card.className = "text-center rounded cardCss portlet-header";
     card.id = "cardNumber"+nbrCard;
 
     //premier </br>
@@ -20,7 +22,6 @@ function addCard (lieuCardNumber,inputTextNumber) {
     //contenu
     let newContent = document.createTextNode(newCard.content);
     let baliseP = document.createElement("p");
-
     baliseP.id = "textNumber"+nbrCard;
 
     baliseP.appendChild(newContent);
@@ -63,9 +64,12 @@ function addCard (lieuCardNumber,inputTextNumber) {
 
     //placement
     let div32 = document.getElementById(lieuCardNumber);
-    div32.appendChild(card);
+    divdeplus.appendChild(card);
+    div32.appendChild(divdeplus);
 
     nbrCard++;
+
+    drag();
 }
 
 function paintCard (cardNumber) {
@@ -148,7 +152,7 @@ function addCol () {
     newCol.id ="colNumber"+nbrCol;
     newUnderCol.className ="shadow-sm p-3 mb-5 bg-white rounded colone";
     newNav.className ="navbar navbar-dark bg-dark";
-    newDiv32.className ="cardSpace";
+    newDiv32.className ="cardSpace prout";
     newDiv32.id="lieuCard"+nbrCol;
     divInput.className ="input-group mb-3";
     inputText.className ="form-control";
@@ -178,20 +182,27 @@ function addCol () {
     newNav.appendChild(buttonDel);
 
     nbrCol++;
+
+    drag();
 }
 
-function allowDrop(ev) {
-    ev.preventDefault();
-  }
-  
-  function drag(ev) {
-    ev.dataTransfer.setData("text", ev.target.id);
-  }
-  
-  function drop(ev) {
-    ev.preventDefault();
-    var data = ev.dataTransfer.getData("text");
-    ev.target.appendChild(document.getElementById(data));
-  }
-
-  // draggable="true" ondragstart="drag(event)" ondragover="allowDrop(event)" ondrop="drop(event)"
+ function drag () {
+    $( ".prout" ).sortable({
+      connectWith: ".prout",
+      handle: ".portlet-header",
+      cancel: ".portlet-toggle",
+      placeholder: "portlet-placeholder ui-corner-all"
+    });
+ 
+    $( ".portlet" )
+      .addClass( "ui-widget ui-widget-content ui-helper-clearfix ui-corner-all" )
+      .find( ".portlet-header" )
+        .addClass( "ui-widget-header ui-corner-all" )
+       
+ 
+    $( ".portlet-toggle" ).click(function() {
+      var icon = $( this );
+      icon.toggleClass( "ui-icon-minusthick ui-icon-plusthick" );
+      icon.closest( ".portlet" ).find( ".portlet-content" ).toggle();
+    });
+  };

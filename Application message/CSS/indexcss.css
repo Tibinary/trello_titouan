@@ -5,6 +5,7 @@
 .cardCss{
     border: solid 2px #343a40;
     margin-bottom: 5%;
+    background-color: #FFFFFF;
 }
 
 .colCss{
@@ -66,3 +67,29 @@ h2{
         margin-left: 10px;
     }
 }
+
+ .prout {
+ }
+
+ .portlet {
+ }
+ 
+ .portlet-header {
+   padding: 0.2em 0.3em;
+   margin-bottom: 0.5em;
+   position: relative;
+ }
+ .portlet-toggle {
+   position: absolute;
+   top: 50%;
+   right: 0;
+   margin-top: -8px;
+ }
+ .portlet-content {
+   padding: 0.4em;
+ }
+ .portlet-placeholder {
+   border: 1px dotted black;
+   margin: 0 1em 1em 0;
+   height: 50px;
+ }
