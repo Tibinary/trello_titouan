@@ -10,11 +10,20 @@ function addCard (lieuCardNumber,inputTextNumber) {
         date : Date.now()
     };
     let card = document.createElement("div");
-    card.className = "card text-center p-3 mb-5 rounded bg-light cardBorder";
+    card.className = "text-center rounded cardCss";
     card.id = "cardNumber"+nbrCard;
+
+    //premier </br>
+    let firstBr = document.createElement("br");
+    card.appendChild(firstBr);
+
+    //contenu
     let newContent = document.createTextNode(newCard.content);
     let baliseP = document.createElement("p");
-    baliseP.appendChild(newContent)
+
+    baliseP.id = "textNumber"+nbrCard;
+
+    baliseP.appendChild(newContent);
     card.appendChild(baliseP);
 
     //div
@@ -37,7 +46,7 @@ function addCard (lieuCardNumber,inputTextNumber) {
     newReplaceButton.className = "btn btn-outline-warning";
     newReplaceButton.appendChild(newReplaceButtonContent);
     div.appendChild(newReplaceButton);
-    newReplaceButton.addEventListener("click",function(){replaceCard(card.id)},false);
+    newReplaceButton.addEventListener("click",function(){replaceCard(baliseP.id)},false);
     
     //Button suppr
     let newDelButton = document.createElement("button");
@@ -48,6 +57,10 @@ function addCard (lieuCardNumber,inputTextNumber) {
     div.appendChild(newDelButton);
     newDelButton.addEventListener("click",function(){delCard(card.id)},false);
 
+    //deuxième </br>
+    let secondBr = document.createElement("br");
+    card.appendChild(secondBr);
+
     //placement
     let div32 = document.getElementById(lieuCardNumber);
     div32.appendChild(card);
@@ -56,29 +69,48 @@ function addCard (lieuCardNumber,inputTextNumber) {
 }
 
 function paintCard (cardNumber) {
-    let carteToPaint = document.getElementById(cardNumber);
-    let color1 = "#000025 !important";
-    let color2 = "#250000 !important";
-    let color3 = "#000000 !important";
-
     if (colorNumber == 1){
-        carteToPaint.style.borderColor = color1;
+        document.getElementById(cardNumber).style.borderColor = "#0000FF";
         colorNumber++;
     }
     else if (colorNumber == 2){
-        carteToPaint.style.borderColor = color2;
+        document.getElementById(cardNumber).style.borderColor = "#FF0000";
         colorNumber++;
     }
     else {
-        carteToPaint.style.borderColor = color3;
+        document.getElementById(cardNumber).style.borderColor = "#343a40";
         colorNumber=1;
     }
-    console.log(colorNumber);
 }
 
-function replaceCard (cardNumber) {
-    let carteToReplace = document.getElementById(cardNumber);
-    carteToReplace.remove();
+function replaceCard (textNumber) {
+    let carteToReplace = document.getElementById(textNumber);
+    let divInput = document.createElement("div");
+    let inputText = document.createElement("input");
+    let divButton = document.createElement("div");
+    let button = document.createElement("button");
+    let titleButton = document.createTextNode("Ajouter");
+
+    divInput.className ="input-group mb-3";
+    inputText.className ="form-control";
+    inputText.id ="inputTextReplace";
+    divButton.className ="input-group-append";
+    button.className ="btn btn-dark";
+    
+    inputText.placeholder = "Entrez le nouveau nom";
+
+    divInput.appendChild(inputText);
+    divInput.appendChild(divButton);
+    divButton.appendChild(button);
+    button.appendChild(titleButton);
+    carteToReplace.appendChild(divInput);
+
+    button.addEventListener("click",function(){validReplaceCard(textNumber,inputText.id)},false);
+}
+
+function validReplaceCard(textNumber, inputTextNumber) {
+    let carteToReplace = document.getElementById(textNumber);
+    carteToReplace.textContent = document.getElementById(inputTextNumber).value;
 }
 
 function delCard (cardNumber) {
@@ -112,7 +144,7 @@ function addCol () {
     let row = document.getElementById("row");
 
     buttonDel.className ="btn btn-outline-danger";
-    newCol.className ="col-3";
+    newCol.className ="colCss";
     newCol.id ="colNumber"+nbrCol;
     newUnderCol.className ="shadow-sm p-3 mb-5 bg-white rounded colone";
     newNav.className ="navbar navbar-dark bg-dark";

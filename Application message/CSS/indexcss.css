@@ -2,8 +2,14 @@
     padding: 0 !important;
 }
 
-.cardBorder{
-    border: solid 1px #000000!important;
+.cardCss{
+    border: solid 2px #343a40;
+    margin-bottom: 5%;
+}
+
+.colCss{
+    display: inline-block;
+    vertical-align: top;
 }
 
 .cardSpace{
@@ -35,4 +41,28 @@ h2{
 ::-webkit-scrollbar{
     width: 0px;
     background: transparent;
+}
+
+@media screen and (max-width: 640px) {
+    .colCss{
+        width: 100%;
+        margin-right: 0px;
+        margin-left: 0px;
+    }
+}
+
+@media screen and (min-width: 641px) and (max-width: 1023px) {
+    .colCss{
+        width: 46%;
+        margin-right: 10px;
+        margin-left: 10px;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .colCss{
+        width: 23%;
+        margin-right: 10px;
+        margin-left: 10px;
+    }
 }
