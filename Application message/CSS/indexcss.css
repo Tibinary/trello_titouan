@@ -23,7 +23,7 @@
 }
 
 .dashboard{
-    min-height: 84%;
+    min-height: 800px;
 }
 
 .colone{
@@ -68,12 +68,6 @@ h2{
     }
 }
 
- .prout {
- }
-
- .portlet {
- }
- 
  .portlet-header {
    padding: 0.2em 0.3em;
    margin-bottom: 0.5em;

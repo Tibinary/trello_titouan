@@ -1,5 +1,5 @@
-let nbrCol = 2;
-let nbrCard = 2;
+let nbrCol = 1;
+let nbrCard = 1;
 let colorNumber = 1;
 
 function addCard (lieuCardNumber,inputTextNumber) {
@@ -126,10 +126,11 @@ function delCard (cardNumber) {
 function delCol (colNumber) {
     let colToDel = document.getElementById(colNumber);
     colToDel.remove();
-    nbrCard--;
+    nbrCol--;
 }
 
 function addCol () {
+if (nbrCol <= 4){
     let newCol = document.createElement("div");
     let newUnderCol = document.createElement("div");
     let newDivNav = document.createElement("div");
@@ -146,6 +147,7 @@ function addCol () {
     let buttonDel = document.createElement("button");
     let titleButtonDel = document.createTextNode("X");
     let row = document.getElementById("row");
+    let secondBr = document.createElement("br");
 
     buttonDel.className ="btn btn-outline-danger";
     newCol.className ="colCss";
@@ -171,6 +173,7 @@ function addCol () {
     newNav.appendChild(title);
     newUnderCol.appendChild(br);
     newUnderCol.appendChild(newDiv32);
+    newDiv32.appendChild(secondBr);
     newUnderCol.appendChild(divInput);
     divInput.appendChild(inputText);
     divInput.appendChild(divButton);
@@ -184,6 +187,7 @@ function addCol () {
     nbrCol++;
 
     drag();
+}
 }
 
  function drag () {
