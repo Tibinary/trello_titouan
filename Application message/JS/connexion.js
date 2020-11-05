@@ -1,5 +1,8 @@
 function connexion () {
-    if (document.getElementById("inputEmail").value == "1234567" && document.getElementById("inputPassword").value == "1234"){
+    if (document.getElementById("inputId").value == "1234" && document.getElementById("inputPassword").value == "0000"){
         window.open("card.html");
+    }
+    else {
+        window.alert("Mauvaise combinaison identifiant / mot de passe veuillez résseyer");
     }
 }
