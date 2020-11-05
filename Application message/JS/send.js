@@ -201,6 +201,7 @@ if (nbrCol <= 4){
     inputText.id ="inputText"+idCol;
     divButton.className ="input-group-append";
     button.className ="btn btn-dark";
+    title.contentEditable = "true";
     
     inputText.placeholder = "Ajouter une carte";
 
