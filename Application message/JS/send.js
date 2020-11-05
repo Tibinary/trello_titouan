@@ -177,7 +177,7 @@ if (nbrCol <= 4){
     let newNav = document.createElement("nav");
     let title = document.createElement("h2");
     let br = document.createElement("br");
-    let newDiv32 = document.createElement("div");
+    let emplacementCard = document.createElement("div");
     let divInput = document.createElement("div");
     let inputText = document.createElement("input");
     let divButton = document.createElement("div");
@@ -193,8 +193,8 @@ if (nbrCol <= 4){
     newCol.id ="colNumber"+idCol;
     newUnderCol.className ="shadow-sm p-3 mb-5 bg-white rounded colone";
     newNav.className ="navbar navbar-dark bg-dark";
-    newDiv32.className ="cardSpace placementOfDragable";
-    newDiv32.id="lieuCard"+idCol;
+    emplacementCard.className ="cardSpace placementOfDragable";
+    emplacementCard.id="lieuCard"+idCol;
     divInput.className ="input-group mb-3";
     divInput.id ="divInput"+idCol;
     inputText.className ="form-control";
@@ -205,7 +205,7 @@ if (nbrCol <= 4){
     
     inputText.placeholder = "Ajouter une carte";
 
-    button.addEventListener("click",function(){addCard(newDiv32.id,inputText.id, divInput.id)},false);
+    button.addEventListener("click",function(){addCard(emplacementCard.id,inputText.id, divInput.id)},false);
     buttonDel.addEventListener("click",function(){delCol(newCol.id)},false);
 
     newCol.appendChild(newUnderCol);
@@ -213,7 +213,7 @@ if (nbrCol <= 4){
     newDivNav.appendChild(newNav);
     newNav.appendChild(title);
     newUnderCol.appendChild(br);
-    newUnderCol.appendChild(newDiv32);
+    newUnderCol.appendChild(emplacementCard);
     newUnderCol.appendChild(divInput);
     divInput.appendChild(inputText);
     divInput.appendChild(divButton);
