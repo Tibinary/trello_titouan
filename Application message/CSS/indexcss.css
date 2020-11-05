@@ -23,7 +23,7 @@
 }
 
 .dashboard{
-    height: 80%;
+    min-height: 800px;
 }
 
 .colone{
@@ -55,17 +55,21 @@ h2{
 @media screen and (min-width: 641px) and (max-width: 1023px) {
     .colCss{
         width: 46%;
-        margin-right: 10px;
-        margin-left: 10px;
+        margin-right: 16px;
+        margin-left: 16px;
     }
 }
 
 @media screen and (min-width: 1024px) {
     .colCss{
         width: 23%;
-        margin-right: 10px;
-        margin-left: 10px;
+        margin-right: 16px;
+        margin-left: 16px;
     }
+}
+
+.placementOfDragable{
+    padding-bottom: 3px;
 }
 
  .portlet-header {
@@ -73,15 +77,18 @@ h2{
    margin-bottom: 0.5em;
    position: relative;
  }
+
  .portlet-toggle {
    position: absolute;
    top: 50%;
    right: 0;
    margin-top: -8px;
  }
+
  .portlet-content {
    padding: 0.4em;
  }
+
  .portlet-placeholder {
    border: 1px dotted black;
    margin: 0 1em 1em 0;

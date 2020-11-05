@@ -1,8 +1,9 @@
 let nbrCol = 1;
+let idCol = 1;
 let nbrCard = 1;
 let colorNumber = 1;
 
-function addCard (lieuCardNumber,inputTextNumber) {
+function addCard (lieuCardNumber,inputTextNumber, bottomCol) {
     //carte
     let newCard = {
         author : "user",
@@ -47,7 +48,7 @@ function addCard (lieuCardNumber,inputTextNumber) {
     newReplaceButton.className = "btn btn-outline-warning";
     newReplaceButton.appendChild(newReplaceButtonContent);
     div.appendChild(newReplaceButton);
-    newReplaceButton.addEventListener("click",function(){replaceCard(baliseP.id)},false);
+    newReplaceButton.addEventListener("click",function(){replaceCard(baliseP.id, bottomCol)},false);
     
     //Button suppr
     let newDelButton = document.createElement("button");
@@ -70,36 +71,74 @@ function addCard (lieuCardNumber,inputTextNumber) {
     nbrCard++;
 
     drag();
+
+    if (newCard.content == "Faire les courses") {
+        window.open("https://www.auchan.fr/magasins/drive/beziers/s-5341a2c0-f26b-d434-4b5a-06704a485ca9");
+    }
+    else if (newCard.content == "Générer une attestation") {
+        window.open("https://media.interieur.gouv.fr/deplacement-covid-19/");
+    }
+    else if (newCard.content == "Acheter à manger") {
+        window.open("https://www.ubereats.com/fr");
+    }
+    else if (newCard.content == "Dino") {
+        window.open("chrome://dino/");
+    }
+    else if (newCard.content == "Utiliser le sopalin") {
+        if (window.confirm("Avez-vous plus de 18 ans ?")) {
+            window.confirm("Bon visionnage");
+            window.open("https://fr.pornhub.com/");
+        }
+        else {
+            txt = "Pas pour cette fois";
+        }
+        
+    }
+    else if (newCard.content == "Easter egg") {
+        window.alert("Faire les courses => Auchan Drive \n Générer une attestation => Générateur d'attestation en ligne \n Acheter à manger => Uber eats \n Dino => Jeu du dinosaure \n Utiliser le sopalin => Site de vidéo éducatives de SVT en ligne");
+    }
 }
 
 function paintCard (cardNumber) {
     if (colorNumber == 1){
-        document.getElementById(cardNumber).style.borderColor = "#0000FF";
+        document.getElementById(cardNumber).style.borderColor = "#8EFF8B";
         colorNumber++;
     }
     else if (colorNumber == 2){
-        document.getElementById(cardNumber).style.borderColor = "#FF0000";
+        document.getElementById(cardNumber).style.borderColor = "#E087FF";
+        colorNumber++;
+    }
+    else if (colorNumber == 3){
+        document.getElementById(cardNumber).style.borderColor = "#F5E278";
+        colorNumber++;
+    }
+    else if (colorNumber == 4){
+        document.getElementById(cardNumber).style.borderColor = "#FF8A63";
+        colorNumber++;
+    }
+    else if (colorNumber == 5){
+        document.getElementById(cardNumber).style.borderColor = "#75CFDB";
         colorNumber++;
     }
     else {
-        document.getElementById(cardNumber).style.borderColor = "#343a40";
+        document.getElementById(cardNumber).style.borderColor = "#000000";
         colorNumber=1;
     }
 }
 
-function replaceCard (textNumber) {
-    let carteToReplace = document.getElementById(textNumber);
+function replaceCard (textNumber, bottomCol) {
+    let bottomColumn = document.getElementById(bottomCol);
     let divInput = document.createElement("div");
     let inputText = document.createElement("input");
     let divButton = document.createElement("div");
     let button = document.createElement("button");
-    let titleButton = document.createTextNode("Ajouter");
+    let titleButton = document.createTextNode("Modifier");
 
     divInput.className ="input-group mb-3";
     inputText.className ="form-control";
-    inputText.id ="inputTextReplace";
+    inputText.id = "inputTextReplace";
     divButton.className ="input-group-append";
-    button.className ="btn btn-dark";
+    button.className ="btn btn-warning";
     
     inputText.placeholder = "Entrez le nouveau nom";
 
@@ -107,14 +146,15 @@ function replaceCard (textNumber) {
     divInput.appendChild(divButton);
     divButton.appendChild(button);
     button.appendChild(titleButton);
-    carteToReplace.appendChild(divInput);
+    bottomColumn.appendChild(divInput);
 
-    button.addEventListener("click",function(){validReplaceCard(textNumber,inputText.id)},false);
+    button.addEventListener("click",function(){validReplaceCard(textNumber, inputText, divInput)},false);
 }
 
-function validReplaceCard(textNumber, inputTextNumber) {
+function validReplaceCard(textNumber, inputTextNumber, divInput) {
     let carteToReplace = document.getElementById(textNumber);
-    carteToReplace.textContent = document.getElementById(inputTextNumber).value;
+    carteToReplace.textContent = inputTextNumber.value;
+    divInput.remove();
 }
 
 function delCard (cardNumber) {
@@ -147,24 +187,24 @@ if (nbrCol <= 4){
     let buttonDel = document.createElement("button");
     let titleButtonDel = document.createTextNode("X");
     let row = document.getElementById("row");
-    let secondBr = document.createElement("br");
 
     buttonDel.className ="btn btn-outline-danger";
     newCol.className ="colCss";
-    newCol.id ="colNumber"+nbrCol;
+    newCol.id ="colNumber"+idCol;
     newUnderCol.className ="shadow-sm p-3 mb-5 bg-white rounded colone";
     newNav.className ="navbar navbar-dark bg-dark";
-    newDiv32.className ="cardSpace prout";
-    newDiv32.id="lieuCard"+nbrCol;
+    newDiv32.className ="cardSpace placementOfDragable";
+    newDiv32.id="lieuCard"+idCol;
     divInput.className ="input-group mb-3";
+    divInput.id ="divInput"+idCol;
     inputText.className ="form-control";
-    inputText.id ="inputText"+nbrCol;
+    inputText.id ="inputText"+idCol;
     divButton.className ="input-group-append";
     button.className ="btn btn-dark";
     
     inputText.placeholder = "Ajouter une carte";
 
-    button.addEventListener("click",function(){addCard(newDiv32.id,inputText.id)},false);
+    button.addEventListener("click",function(){addCard(newDiv32.id,inputText.id, divInput.id)},false);
     buttonDel.addEventListener("click",function(){delCol(newCol.id)},false);
 
     newCol.appendChild(newUnderCol);
@@ -173,7 +213,6 @@ if (nbrCol <= 4){
     newNav.appendChild(title);
     newUnderCol.appendChild(br);
     newUnderCol.appendChild(newDiv32);
-    newDiv32.appendChild(secondBr);
     newUnderCol.appendChild(divInput);
     divInput.appendChild(inputText);
     divInput.appendChild(divButton);
@@ -185,14 +224,15 @@ if (nbrCol <= 4){
     newNav.appendChild(buttonDel);
 
     nbrCol++;
+    idCol++;
 
     drag();
 }
 }
 
  function drag () {
-    $( ".prout" ).sortable({
-      connectWith: ".prout",
+    $( ".placementOfDragable" ).sortable({
+      connectWith: ".placementOfDragable",
       handle: ".portlet-header",
       cancel: ".portlet-toggle",
       placeholder: "portlet-placeholder ui-corner-all"
